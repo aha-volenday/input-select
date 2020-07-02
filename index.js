@@ -33,7 +33,7 @@ export default ({
 				style={{ width: '100%' }}
 				value={value ? value : ''}>
 				{options.map(e => (
-					<Select.Option key={e} value={e}>
+					<Select.Option key={e} value={e === 'All' ? 'all' : e}>
 						{e}
 					</Select.Option>
 				))}
