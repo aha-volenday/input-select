@@ -4,6 +4,7 @@ import { Form, Select } from 'antd';
 import './styles.css';
 
 export default ({
+	allowClear = false,
 	disabled = false,
 	error,
 	extra = null,
@@ -23,6 +24,7 @@ export default ({
 	const renderSelect = () => {
 		return (
 			<Select
+				allowClear={allowClear}
 				disabled={disabled}
 				filterOption={(input, { props }) => props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 				mode={multiple ? 'multiple' : 'default'}
