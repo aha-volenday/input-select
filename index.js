@@ -1,7 +1,9 @@
 import React from 'react';
-import { Form, Select } from 'antd';
+import { Form, Select, Skeleton } from 'antd';
 
 import './styles.css';
+
+const browser = typeof process.browser !== 'undefined' ? process.browser : true;
 
 export default ({
 	allowClear = false,
@@ -57,5 +59,9 @@ export default ({
 		validateStatus: error ? 'error' : 'success'
 	};
 
-	return <Form.Item {...formItemCommonProps}>{renderSelect()}</Form.Item>;
+	return (
+		<Form.Item {...formItemCommonProps}>
+			{browser ? renderSelect() : <Skeleton active paragraph={{ rows: 1, width: '100%' }} title={false} />}
+		</Form.Item>
+	);
 };
