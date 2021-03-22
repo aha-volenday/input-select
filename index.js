@@ -31,6 +31,7 @@ export default ({
 				filterOption={(input, { props }) => props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 				mode={multiple ? 'multiple' : 'default'}
 				onChange={e => onChange({ target: { name: id, value: e } }, id, e)}
+				onClear={e => onChange({ target: { name: id, value: '' } }, id, '')}
 				optionFilterProp="children"
 				placeholder={placeholder || label || id}
 				showSearch
