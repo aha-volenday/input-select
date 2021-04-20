@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Select, Skeleton } from 'antd';
+import { Form, Select, Skeleton, Tooltip } from 'antd';
 
 const browser = typeof window !== 'undefined' ? true : false;
 
@@ -17,6 +17,7 @@ export default ({
 	onChange,
 	placeholder = '',
 	required = false,
+	toolTip = {},
 	value = '',
 	withLabel = false
 }) => {
@@ -24,7 +25,7 @@ export default ({
 	if (options.includes('N/A')) options.splice(options.indexOf('N/A'), 1);
 
 	const renderSelect = () => {
-		return (
+		const select = (
 			<Select
 				allowClear={allowClear}
 				disabled={disabled}
@@ -44,6 +45,8 @@ export default ({
 				))}
 			</Select>
 		);
+
+		return Object.keys(toolTip).length === 0 ? select : <Tooltip {...toolTip}>{select}</Tooltip>;
 	};
 
 	const formItemCommonProps = {
