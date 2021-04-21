@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Select, Skeleton, Tooltip } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const browser = typeof window !== 'undefined' ? true : false;
 
@@ -17,7 +18,7 @@ export default ({
 	onChange,
 	placeholder = '',
 	required = false,
-	toolTip = {},
+	toolTip = '',
 	value = '',
 	withLabel = false
 }) => {
@@ -25,7 +26,7 @@ export default ({
 	if (options.includes('N/A')) options.splice(options.indexOf('N/A'), 1);
 
 	const renderSelect = () => {
-		const select = (
+		return (
 			<Select
 				allowClear={allowClear}
 				disabled={disabled}
@@ -45,8 +46,6 @@ export default ({
 				))}
 			</Select>
 		);
-
-		return Object.keys(toolTip).length === 0 ? select : <Tooltip {...toolTip}>{select}</Tooltip>;
 	};
 
 	const formItemCommonProps = {
@@ -54,7 +53,15 @@ export default ({
 		help: error ? error : '',
 		label: withLabel ? (
 			<>
-				<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
+				<div style={{ float: 'right' }}>{extra}</div>{' '}
+				<span class="label">
+					{label}
+					{toolTip && (
+						<Tooltip title={toolTip}>
+							<QuestionCircleOutlined />
+						</Tooltip>
+					)}
+				</span>
 			</>
 		) : (
 			false
