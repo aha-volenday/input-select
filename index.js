@@ -7,6 +7,7 @@ if (browser) require('./styles.css');
 
 export default ({
 	allowClear = false,
+	className = '',
 	disabled = false,
 	error,
 	extra = null,
@@ -17,6 +18,7 @@ export default ({
 	onChange,
 	placeholder = '',
 	required = false,
+	styles = {},
 	value = '',
 	withLabel = false
 }) => {
@@ -27,6 +29,7 @@ export default ({
 		return (
 			<Select
 				allowClear={allowClear}
+				className={className}
 				disabled={disabled}
 				filterOption={(input, { props }) => props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 				mode={multiple ? 'multiple' : 'default'}
@@ -35,7 +38,7 @@ export default ({
 				optionFilterProp="children"
 				placeholder={placeholder || label || id}
 				showSearch
-				style={{ width: '100%' }}
+				style={{ width: '100%', ...styles }}
 				value={value ? value : ''}>
 				{options.map(e => (
 					<Select.Option key={e} value={e === 'All' ? 'all' : e}>
